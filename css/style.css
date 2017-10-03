@@ -4,6 +4,9 @@
   --color-blue: #2D9CDB;
   --color-yellow: #F2C94C;
   --color-red: #EB5757;
+
+  --color-background: #404444;
+  --color-output: #272B2B;
 }
 
 @font-face{
@@ -18,12 +21,12 @@
 }
 
 .card {
-  background: #484D4D;
+  background: var(--color-background);
 }
 
 .card p {
   font-family: "Fira Code", monospaced;
-  font-size: 16px;
+  font-size: 18px;
   color: #ccc;
   margin: 5px 0;
 }
@@ -31,7 +34,7 @@
   padding: 20px;
 }
 .card .output {
-  background: black;
+  background: var(--color-output);
   padding: 6px 20px;
 }
 
@@ -43,18 +46,21 @@
 }
 
 .inset-1 {
-  padding-left: 1em;
+  padding-left: 1.8em;
 }
 
-.bubble {
-  width: 0.8em;
-  height: 0.8em;
+.dot,
+.rect {
+  width: 0.7em;
+  height: 0.7em;
   display: inline-block;
-  border-radius: 50%;
-  margin: 0 3px;
+  margin: 0 4px;
 }
-.bubble.green { background: var(--color-green) }
-.bubble.purple { background: var(--color-purple) }
-.bubble.blue { background: var(--color-blue) }
-.bubble.yellow { background: var(--color-yellow) }
-.bubble.red { background: var(--color-red) }
+.dot {
+  border-radius: 50%;
+}
+.item.green { background: var(--color-green) }
+.item.purple { background: var(--color-purple) }
+.item.blue { background: var(--color-blue) }
+.item.yellow { background: var(--color-yellow) }
+.item.red { background: var(--color-red) }
