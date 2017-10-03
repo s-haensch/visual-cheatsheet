@@ -1,0 +1,60 @@
+:root {
+  --color-green: #6FCF97;
+  --color-purple: #BB6BD9;
+  --color-blue: #2D9CDB;
+  --color-yellow: #F2C94C;
+  --color-red: #EB5757;
+}
+
+@font-face{
+  font-family: 'Fira Sans';
+  src: url("eot/FiraSans-Bold.eot");
+  src: local("Fira Sans Bold"),
+       url("eot/FiraSans-Bold.eot") format("embedded-opentype"),
+       url("woff/FiraSans-Bold.woff") format("woff"),
+       url("ttf/FiraSans-Bold.ttf") format("truetype");
+  /* font-weight: 600; */
+  font-style: normal;
+}
+
+.card {
+  background: #484D4D;
+}
+
+.card p {
+  font-family: "Fira Code", monospaced;
+  font-size: 16px;
+  color: #ccc;
+  margin: 5px 0;
+}
+.card .function {
+  padding: 20px;
+}
+.card .output {
+  background: black;
+  padding: 6px 20px;
+}
+
+.function-name {
+  font-family: "Fira Sans", "Fira", monospaced;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.inset-1 {
+  padding-left: 1em;
+}
+
+.bubble {
+  width: 0.8em;
+  height: 0.8em;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+.bubble.green { background: var(--color-green) }
+.bubble.purple { background: var(--color-purple) }
+.bubble.blue { background: var(--color-blue) }
+.bubble.yellow { background: var(--color-yellow) }
+.bubble.red { background: var(--color-red) }
