@@ -12,9 +12,6 @@
   }))
 
 
-(def card-description {
-  :title "map"
-  })
 
 ;; dot
 (defn dot
@@ -23,37 +20,54 @@
 
 
 ;; array of dots
-(defn dot-array
-  [colors]
+(defn item-array
+  ([colors]
   (for [color colors]
     (dot color)))
+  
+  ([color times]
+    (for [num (range times)]
+      (dot color)))
+  )
 
 
 ;; card container
-(defn card []
+(defn card
+  [props]
+
   [:div.card
     [:div.function
       [:p 
-        "(" [:span.function-name (get card-description :title)]]
-      [:p.inset-1 "make-blue"]
-      [:p.inset-1
-        "["
-        (dot-array ["green" "purple" "blue" "yellow" "red"])
-        "])" ]]
+        "(" [:span.function-name "map"]]
+
+      (for [line (get props :lines)]
+        [:p.inset-1 (cons "" line)])
+    ]
 
     [:div.output
-      [:p
-        "=> ("
-        (dot-array ["blue" "blue"])
-        ")"]]
-  ])
-
-
-(reagent/render-component [card]
-  (. js/document (getElementById "app")))
-
-(defn on-js-reload []
-  ;; optionally touch your app-state to force rerendering depending on
-  ;; your application
-  (swap! app-state update-in [:__figwheel_counter] inc)
+      [:p (cons "=> " (get props :output))]
+    ]
+  ]
 )
+
+
+(def properties {
+  :title "map"
+  
+  :lines [
+    "make-blue"
+
+    [
+      "["
+      (item-array ["green" "purple" "blue" "yellow" "red"])
+      "])"
+    ]
+  ]
+  
+  :output [
+    "(" (item-array "blue" 5) ")"
+  ]}
+)
+
+(reagent/render-component [card properties]
+  (. js/document (getElementById "app")))
