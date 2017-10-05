@@ -6,20 +6,17 @@
 
 ;; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom
-  { :text "Hello!" })
-)
+  { :text "Hello!" }))
 
 
 ;; COMPONENTS
 ;; dot
 (defn dot [color]
-  [:span {:class (str "item dot " color)}]
-)
+  [:span {:class (str "item dot " color)}])
 
 ;; rect
 (defn rect [color]
-  [:span {:class (str "item rect " color)}]
-)
+  [:span {:class (str "item rect " color)}] )
 
 
 ;; array of dots
@@ -42,10 +39,10 @@
         [:p.inset-1 (cons "" line)])]
 
     [:div.output
-      [:p (cons "=> " (get props :output))]]]
-)
+      [:p (cons "=> " (get props :output))]]])
 
-;; props
+
+;; props "map"
 (def properties-map {
   :title "map"
   :lines [
@@ -63,31 +60,32 @@
     "("
     (item-array [
         {:color "blue"  :shape dot}
-        {:color "blue" :shape rect}
-        {:color "blue"   :shape dot}
-        {:color "blue" :shape dot}
-        {:color "blue"    :shape rect}])
-    ")" ]}
-)
+        {:color "blue"  :shape rect}
+        {:color "blue"  :shape dot}
+        {:color "blue"  :shape dot}
+        {:color "blue"  :shape rect}])
+    ")"
+  ]})
+
+;; props "filter"
 (def properties-filter {
   :title "filter"
   :lines [
     "red?"
     [ "["
       (item-array [
-        {:color "green" :shape dot}
-        {:color "red" :shape rect}
-        {:color "blue" :shape rect}
+        {:color "green"  :shape dot}
+        {:color "red"    :shape rect}
+        {:color "blue"   :shape rect}
         {:color "yellow" :shape dot}
-        {:color "red" :shape dot}])
+        {:color "red"    :shape dot}])
       "])" ] ]
   :output [
     "("
     (item-array [
         {:color "red" :shape rect}
         {:color "red" :shape dot}])
-    ")" ]}
-)
+    ")" ]})
 
 
 ;; main
@@ -95,9 +93,7 @@
   [:div
     (card properties-map)
     (card properties-filter)
-  ]
-)
-
+  ])
 
 ;; render
 (reagent/render-component [ app ]
