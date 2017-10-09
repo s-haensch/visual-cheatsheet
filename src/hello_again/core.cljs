@@ -1,5 +1,5 @@
 (ns hello-again.core
-    (:require [reagent.core :as reagent :refer [atom]]))
+  (:require [reagent.core :as reagent :refer [atom]]))
 
 (enable-console-print!)
 
@@ -18,7 +18,6 @@
 (defn rect [color]
   [:span {:class (str "item rect " color)}] )
 
-
 ;; array of dots
 (defn item-array
   ([items]
@@ -27,7 +26,6 @@
   ([item times]
     (for [num (range times)]
       ((get item :shape) (get item :color)))))
-
 
 ;; card container
 (defn card [props]
@@ -40,7 +38,6 @@
 
     [:div.output
       [:p (cons "=> " (get props :output))]]])
-
 
 ;; props "map"
 (def properties-map {
@@ -86,7 +83,6 @@
         {:color "red" :shape rect}
         {:color "red" :shape dot}])
     ")" ]})
-
 
 ;; main
 (defn app []
