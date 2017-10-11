@@ -4,21 +4,59 @@
   --color-blue: #2D9CDB;
   --color-yellow: #F2C94C;
   --color-red: #EB5757;
+  --color-black: #333;
 
-  --color-background: #404444;
-  --color-output: #272B2B;
+  --color-background: #E2E1DD;
+  --color-output: #323335;
+  --color-brackets: #A0A0A0;
+  --color-function-argument: #4F4F4F;
 }
 
 @font-face{
-  font-family: 'Fira Sans';
+  font-family: 'Fira Sans Bold';
   src: url("eot/FiraSans-Bold.eot");
   src: local("Fira Sans Bold"),
        url("eot/FiraSans-Bold.eot") format("embedded-opentype"),
        url("woff/FiraSans-Bold.woff") format("woff"),
        url("ttf/FiraSans-Bold.ttf") format("truetype");
-  /* font-weight: 600; */
+  font-weight: 100;
   font-style: normal;
 }
+@font-face{
+    font-family: 'Fira Sans SemiBold';
+    src: url("eot/FiraSans-SemiBold.eot");
+    src: local("Fira Sans SemiBold"),
+         url("eot/FiraSans-SemiBold.eot") format("embedded-opentype"),
+         url("woff/FiraSans-SemiBold.woff") format("woff"),
+         url("ttf/FiraSans-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+body {
+  background-color: #ddd9cf;
+  background-image: linear-gradient(45deg, #ddd9cf 0%, #91CAB5 100%);
+  height: 2000px;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+  background-image: linear-gradient(135deg, #88AFCA 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.headline {
+  font-family: "Fira Sans SemiBold", "Fira", sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding-top: 20px;
+  color: white;
+}
+.headline .emph {
+  color: var(--color-red);
+}
+
 
 .card {
   background: var(--color-background);
@@ -27,7 +65,7 @@
 .card p {
   font-family: "Fira Code", monospaced;
   font-size: 18px;
-  color: #ccc;
+  color: var(--color-brackets);
   margin: 5px 0;
 }
 .card .function {
@@ -39,23 +77,27 @@
 }
 
 .function-name {
-  font-family: "Fira Sans", "Fira", monospaced;
+  font-family: "Fira Sans Bold", "Fira", monospaced;
   font-size: 18px;
   font-weight: bold;
-  color: white;
+  color: #333;
 }
 
 .inset-1 {
   padding-left: 1.8em;
 }
 
-.dot,
-.rect {
-  width: 0.7em;
-  height: 0.7em;
+.item {
+  width: 0.6em;
+  height: 0.6em;
   display: inline-block;
   margin: 0 4px;
+  border: 1px solid #333;
 }
+.output .item {
+  border: none;
+}
+
 .dot {
   border-radius: 50%;
 }
