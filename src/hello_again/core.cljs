@@ -29,14 +29,24 @@
 ;; card container
 (defn card [props]
   [:div.card
-    [:div.function
-      [:p 
-        "(" [:span.function-name (get props :title)]]
-      (for [line (get props :lines)]
-        [:p.inset-1 (cons "" line)])]
+    [:div.card-header
+      [:table
+        [:thead [:tr [:th "Hello"]]]
+        [:tbody [:tr
+          [:td.package "clojure.core"]
+          [:td.since "since 1.0(" [:a {:href "www.example.com"} "source"] ")"]]]]]
 
-    [:div.output
-      [:p (cons "=> " (get props :output))]]])
+    [:div.card-body
+      [:div.function
+        [:p 
+          "(" [:span.function-name (get props :title)]]
+        (for [line (get props :lines)]
+          [:p.inset-1 (cons "" line)])]
+      [:div.output
+        [:p (cons "=> " (get props :output))]]]
+
+    [:div.card-footer
+      [:a {:href "www.example.com"} "Examples"]]])
 
 ;; props "map"
 (def properties-map {
