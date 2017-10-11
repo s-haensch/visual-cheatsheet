@@ -3,7 +3,6 @@
 
 (enable-console-print!)
 
-
 ;; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom
   { :text "Hello!" }))
@@ -47,10 +46,10 @@
     [ "["
       (item-array [
         {:color "green"  :shape dot}
-        {:color "purple" :shape rect}
-        {:color "blue"   :shape dot}
-        {:color "yellow" :shape dot}
-        {:color "red"    :shape rect}])
+        {:color "green"  :shape rect}
+        {:color "purple" :shape dot}
+        {:color "green"  :shape dot}
+        {:color "purple" :shape rect}])
       "])"
     ]]
   :output [
@@ -68,25 +67,26 @@
 (def properties-filter {
   :title "filter"
   :lines [
-    "red?"
+    "purple?"
     [ "["
       (item-array [
-        {:color "green"  :shape dot}
-        {:color "red"    :shape rect}
-        {:color "blue"   :shape rect}
-        {:color "yellow" :shape dot}
-        {:color "red"    :shape dot}])
+        {:color "purple"  :shape dot}
+        {:color "blue"    :shape rect}
+        {:color "blue"    :shape dot}
+        {:color "green"   :shape dot}
+        {:color "purple"  :shape rect}])
       "])" ] ]
   :output [
     "("
     (item-array [
-        {:color "red" :shape rect}
-        {:color "red" :shape dot}])
+        {:color "purple"  :shape dot}
+        {:color "purple"  :shape rect}])
     ")" ]})
 
 ;; main
 (defn app []
   [:div
+    [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
     (card properties-map)
     (card properties-filter)
   ])
