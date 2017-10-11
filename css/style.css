@@ -1,14 +1,17 @@
 :root {
   font-size: 16px;
   font-family: "Lato", sans-serif;
+  font-weight: normal;
   --color-green: #6FCF97;
   --color-purple: #BB6BD9;
   --color-blue: #2D9CDB;
   --color-red: #EB5757;
   --color-black: #333;
+  --color-gray: #828282;
 
-  --color-background: #E2E1DD;
-  --color-output: #323335;
+  --color-card-background: #fff;
+  --color-code-background: #E2E1DD;
+  --color-code-output: #323335;
   --color-brackets: #A0A0A0;
   --color-function-argument: #4F4F4F;
 }
@@ -48,6 +51,13 @@ body {
   background-image: linear-gradient(135deg, #88AFCA 0%, rgba(0, 0, 0, 0) 100%);
 }
 
+.content {
+  width: 60rem;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .headline {
   font-family: "Fira Sans SemiBold", "Fira", sans-serif;
   font-size: 2.5rem;
@@ -60,34 +70,93 @@ body {
   color: var(--color-red);
 }
 
+/* CARD LAYOUT */
 .card {
-  background: var(--color-background);
+  background: var(--color-card-background);
+  padding: 2.5rem 2rem 2rem 2rem;
+  width: 17rem;
+  box-shadow: 0px 3px 22px rgba(0, 0, 0, 0.25);
+  margin: 0 4rem 4rem 0;
 }
 
-.card p {
+
+/* card header */
+.card-header {
+  margin-bottom: 2rem;
+}
+
+.card-header table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.card-header table thead tr th {
+  text-align: left;
+  text-transform: uppercase;
+}
+.card-header table tbody tr td {
+  border-top: 1px solid var(--color-black);
+  padding-top: 3px;
+  color: var(--color-gray);
+}
+
+.card-header table tbody tr td.package {
+  text-align: left;
+}
+
+.card-header table tbody tr td.since {
+  text-align: right;
+}
+.card-header table tbody tr td.since a {
+  color: var(--color-red);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* card body */
+.card-body {
+  background-color: var(--color-code-background);
+  margin-bottom: 1.25rem;
+}
+.card-body p {
   font-family: "Fira Code", monospaced;
   font-size: 1.125rem;
   color: var(--color-brackets);
   margin: 0.5em 0;
 }
-.card .function {
-  padding: 20px;
+
+.card-body .function {
+  padding: 2rem 2.5rem;
 }
-.card .output {
-  background: var(--color-output);
-  padding: 6px 20px;
+.card-body .function p:nth-child(1) {
+  margin-bottom: -0.4rem;
 }
 
-.function-name {
+.card-body .output {
+  background: var(--color-code-output);
+  padding: 0.15rem 2.5rem;
+}
+
+.card-body .function .function-name {
   font-family: "Fira Sans Bold", "Fira", monospaced;
   font-size: 1.125rem;
   font-weight: bold;
   color: #333;
 }
 
-.inset-1 {
-  padding-left: 1.8em;
+.card-body .function .inset-1 {
+  padding-left: 1.5em;
 }
+
+/* card footer */
+.card-footer a {
+  color: var(--color-red);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
 
 .item {
   width: 0.6em;
