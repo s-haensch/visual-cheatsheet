@@ -1,5 +1,5 @@
 :root {
-  font-size: 16px;
+  font-size: 15px;
   font-family: "Lato", sans-serif;
   font-weight: normal;
   --color-green: #6FCF97;
@@ -73,7 +73,7 @@ body {
 /* CARD LAYOUT */
 .card {
   background: var(--color-card-background);
-  padding: 2.5rem 2rem 2rem 2rem;
+  padding: 1.75rem 2rem 2rem 2rem;
   width: 17rem;
   box-shadow: 0px 3px 22px rgba(0, 0, 0, 0.25);
   margin: 0 4rem 4rem 0;
@@ -82,7 +82,7 @@ body {
 
 /* card header */
 .card-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
 }
 
 .card-header table {
@@ -92,12 +92,15 @@ body {
 
 .card-header table thead tr th {
   text-align: left;
+  font-size: 1.125rem;
+  font-weight: 300;
   text-transform: uppercase;
+  color: var(--color-gray);
 }
 .card-header table tbody tr td {
-  border-top: 1px solid var(--color-black);
+  border-top: 1px solid var(--color-gray);
   padding-top: 3px;
-  color: var(--color-gray);
+  color: var(--color-brackets);
 }
 
 .card-header table tbody tr td.package {
@@ -108,10 +111,15 @@ body {
   text-align: right;
 }
 .card-header table tbody tr td.since a {
-  color: var(--color-red);
+  color: var(--color-gray);
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.87rem;
+  cursor: pointer;
+  padding-left: 0.5rem;
+}
+.card-header table tbody tr td.since a:hover {
+  color: var(--color-red);
 }
 
 /* card body */
@@ -121,7 +129,7 @@ body {
 }
 .card-body p {
   font-family: "Fira Code", monospaced;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--color-brackets);
   margin: 0.5em 0;
 }
@@ -140,7 +148,7 @@ body {
 
 .card-body .function .function-name {
   font-family: "Fira Sans Bold", "Fira", monospaced;
-  font-size: 1.125rem;
+  /* font-size: 1.125rem; */
   font-weight: bold;
   color: #333;
 }
@@ -153,7 +161,11 @@ body {
 .card-footer a {
   color: var(--color-red);
   text-decoration: none;
+  color: var(--color-gray);
   font-weight: 700;
+}
+.card-footer a:hover {
+  color: var(--color-red);
 }
 
 
