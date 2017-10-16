@@ -26,7 +26,7 @@
 
 ;; card container
 (defn card [props]
-  [:div.card
+  [:div {:class (str "card " (get props :size))}
     [:div.card-header
       [:table
         [:thead [:tr [:th (get props :title)]]]
@@ -41,13 +41,14 @@
             ]]]]]
 
     [:div.card-body
-      [:div.function
-        [:p 
-          "(" [:span.function-name (get props :title)]]
-        ; (for [line (get props :lines)]
-        ;   ^{:key line} [:p.inset-1 (cons "" line)])
-        (map-indexed (fn [index, line] ^{:key (str "line-" index)} [:p.inset-1 (cons "" line)]) (get props :lines))
-      ]
+      [:div.function-wrapper
+        [:div.function
+          [:p 
+            "(" [:span.function-name (get props :title)]]
+          (map-indexed
+            (fn [index, line] ^{:key (str "line-" index)}
+              [:p.inset-1 (cons "" line)]) (get props :lines))]]
+
       [:div.output
         [:p (cons "=>  " (get props :output))]]]
 
@@ -57,7 +58,6 @@
           :target "blank"
         } "» Examples"]]])
 
-;; props "map"
 (def properties-map {
   :title "map"
   :package "clojure.core"
@@ -86,7 +86,6 @@
   :examples-link "http://clojuredocs.org/clojure.core/map"
   })
 
-;; props "filter"
 (def properties-filter {
   :title "filter"
   :package "clojure.core"
@@ -111,12 +110,55 @@
   :examples-link "http://clojuredocs.org/clojure.core/filter"
   })
 
+(def properties-for {
+  :title "for"
+  :package "clojure.core"
+  :since "1.0"
+  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L4576"
+  :size "small"
+  :lines [
+    [ "[x ["
+      (item-array [
+        {:color "green"  :shape dot}
+        {:color "green"  :shape rect}
+        ]) "] y ["
+      (item-array [
+        {:color "blue"  :shape dot}
+        {:color "purple"  :shape rect}
+        ])
+      "]]"
+    ]
+    "[x y])"
+    ]
+  :output [
+    "(["
+    (item-array [
+        {:color "green"  :shape dot}
+        {:color "blue"  :shape dot}])
+    "] ["
+    (item-array [
+        {:color "green"  :shape dot}
+        {:color "purple"  :shape rect}])
+    "] ["
+    (item-array [
+        {:color "green"  :shape rect}
+        {:color "blue"  :shape dot}])
+    "] ["
+    (item-array [
+        {:color "green"  :shape rect}
+        {:color "purple"  :shape rect}])
+    "])"
+  ]
+  :examples-link "http://clojuredocs.org/clojure.core/for"
+  })
+
 ;; main
 (defn app []
   [:div.content
     [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
     (card properties-map)
     (card properties-filter)
+    (card properties-for)
   ])
 
 ;; render
