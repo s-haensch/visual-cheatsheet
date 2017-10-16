@@ -1,7 +1,7 @@
 (ns hello-again.core
   (:require [reagent.core :as reagent :refer [atom]]))
 
-(enable-console-print!)
+  ; (enable-console-print!)
 
 ;; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom
@@ -9,21 +9,20 @@
 
 ;; COMPONENTS
 ;; dot
-(defn dot [color]
-  [:span {:class (str "item dot " color)}])
+(defn dot [props]
+  ^{:key (str "item-" (nth props 1))}
+  [:span {:class (str "item dot " (nth props 0))}])
 
 ;; rect
-(defn rect [color]
-  [:span {:class (str "item rect " color)}] )
+(defn rect [props]
+  ^{:key (str "item-" (nth props 1))}
+  [:span {:class (str "item rect " (nth props 0))}] )
 
 ;; array of dots
 (defn item-array
   ([items]
-    (for [item items]
-      ((get item :shape) (get item :color))))
-  ([item times]
-    (for [num (range times)]
-      ((get item :shape) (get item :color)))))
+    (map-indexed #((get %2 :shape) [(get %2 :color) %1]) ;; %1 is index, %2 is array object
+        items)))
 
 ;; card container
 (defn card [props]
@@ -34,19 +33,21 @@
         [:tbody [:tr
           [:td.package (get props :package)]
           [:td.since
-            "since 1.0 ( "
+            (str "since " (get props :since))
             [:a {
                 :href (get props :source-link)
                 :target "blank"
-              } "source"]
-            " )"]]]]]
+              } "» source"]
+            ]]]]]
 
     [:div.card-body
       [:div.function
         [:p 
           "(" [:span.function-name (get props :title)]]
-        (for [line (get props :lines)]
-          [:p.inset-1 (cons "" line)])]
+        ; (for [line (get props :lines)]
+        ;   ^{:key line} [:p.inset-1 (cons "" line)])
+        (map-indexed (fn [index, line] ^{:key (str "line-" index)} [:p.inset-1 (cons "" line)]) (get props :lines))
+      ]
       [:div.output
         [:p (cons "=>  " (get props :output))]]]
 
