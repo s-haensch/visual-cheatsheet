@@ -58,6 +58,7 @@
           :target "blank"
         } "» Examples"]]])
 
+;; card properties        
 (def properties-map {
   :title "map"
   :package "clojure.core"
@@ -152,6 +153,55 @@
   :examples-link "http://clojuredocs.org/clojure.core/for"
   })
 
+(def properties-assoc {
+  :title "assoc"
+  :package "clojure.core"
+  :since "1.0"
+  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L181"
+  :lines [
+    [ "["
+      (item-array [
+        {:color "green"  :shape dot}
+        {:color "green"  :shape dot}
+        {:color "green"  :shape dot}
+        ]) "]"]
+      ["1 " (rect ["purple" 0])
+      ")"]]
+  :output [
+    "["
+    (item-array [
+        {:color "green"  :shape dot}
+        {:color "purple" :shape rect}
+        {:color "green"  :shape dot}])
+    "]"
+  ]
+  :examples-link "http://clojuredocs.org/clojure.core/assoc"
+  })
+
+(def properties-assoc-in {
+  :title "assoc-in"
+  :package "clojure.core"
+  :since "1.0"
+  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6043"
+  :lines [
+    [ "[[" (item-array [
+        {:color "blue"  :shape dot}
+        {:color "blue"  :shape dot} ]) "]"
+      "[" (item-array [
+        {:color "purple"  :shape rect}
+        {:color "purple"  :shape rect} ]) "]]"]
+    [ "[1 0] " (dot ["green" 0]) ")" ]]
+  :output [
+    "[[" (item-array [
+      {:color "blue"  :shape dot}
+      {:color "blue"  :shape dot}]) "] ["
+    (item-array [
+      {:color "green"  :shape dot}
+      {:color "purple"  :shape rect}]) "]]"
+  ]
+  :examples-link "http://clojuredocs.org/clojure.core/assoc-in"
+  })
+
 ;; main
 (defn app []
   [:div.content
@@ -159,6 +209,8 @@
     (card properties-map)
     (card properties-filter)
     (card properties-for)
+    (card properties-assoc)
+    (card properties-assoc-in)
   ])
 
 ;; render
