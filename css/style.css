@@ -1,19 +1,22 @@
 :root {
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Lato", sans-serif;
   font-weight: normal;
   --color-green: #6FCF97;
   --color-purple: #BB6BD9;
   --color-blue: #2D9CDB;
   --color-red: #EB5757;
-  --color-black: #333;
+  --color-lightgray: #c4c4c4;
   --color-gray: #828282;
+  --color-black: #333;
 
   --color-card-background: #fff;
-  --color-code-background: #E2E1DD;
+  --color-code-background: rgb(230, 227, 220);
   --color-code-output: #323335;
   --color-brackets: #A0A0A0;
   --color-function-argument: #4F4F4F;
+
+  --duration-default: 0.25s;
 }
 
 @font-face{
@@ -54,7 +57,7 @@ body {
 
 .content {
   width: 66rem;
-  /* margin: auto; */
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -76,7 +79,7 @@ body {
 /* CARD LAYOUT */
 .card {
   background: var(--color-card-background);
-  padding: 1.75rem 2rem 2rem 2rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   width: 17rem;
   box-shadow: 0px 3px 22px rgba(0, 0, 0, 0.25);
   margin-bottom: 2.5rem;
@@ -89,51 +92,45 @@ body {
 
 /* card header */
 .card-header {
-  margin-bottom: 1.8rem;
+  max-height: 0;
+  margin-bottom: 0;
+  color: white;
+  overflow: hidden;
+  transition: max-height var(--duration-default),
+    margin-bottom var(--duration-default),
+    color var(--duration-default);
+  }
+.card:hover .card-header {
+  max-height: 12rem;
+  margin-bottom: 1rem;
+  color: var(--color-black);
 }
 
-.card-header table {
+.card-header .card-title {
   width: 100%;
-  border-spacing: 0;
-}
-
-.card-header table thead tr th {
-  text-align: left;
-  font-size: 1.125rem;
-  font-weight: 300;
   text-transform: uppercase;
-  color: var(--color-gray);
-}
-.card-header table tbody tr td {
-  border-top: 1px solid var(--color-gray);
-  padding-top: 3px;
-  color: var(--color-brackets);
-  font-size: 0.8rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--color-black);
+  margin: 0 0 0 0;
+  padding: 0;
 }
 
-.card-header table tbody tr td.package {
-  text-align: left;
+.card-header .description {
+  color: white;
+  margin: 0.65em 0 0 0;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.3em;
+  transition: color 0.25s;
 }
-
-.card-header table tbody tr td.since {
-  text-align: right;
-}
-.card-header table tbody tr td.since a {
+.card:hover .card-header .description {
   color: var(--color-gray);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.87rem;
-  cursor: pointer;
-  padding-left: 0.5rem;
-}
-.card-header table tbody tr td.since a:hover {
-  color: var(--color-red);
 }
 
 /* card body */
 .card-body {
   background-color: var(--color-code-background);
-  margin-bottom: 1.25rem;
 }
 .card-body p {
   font-family: "Fira Code", monospaced;
@@ -144,6 +141,7 @@ body {
 
 .card-body .function-wrapper {
   display: flex;
+  border: 1px solid var(--color-brackets);
 }
 
 .card-body .function {
@@ -170,28 +168,51 @@ body {
 }
 
 /* card footer */
-.card-footer a {
-  color: var(--color-red);
+.card-footer {
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  transition: max-height var(--duration-default),
+    margin-top var(--duration-default),
+    color var(--duration-default);
+  display: flex;
+  justify-content: space-between;
+}
+.card:hover .card-footer {
+  max-height: 1.5rem;
+  margin-top: 0.75rem;
+}
+.card a {
+  color: var(--color-card-background);
+  transition: color 0.5s;
   text-decoration: none;
-  color: var(--color-gray);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
-.card-footer a:hover {
+.card .card-footer a:first-child {
+  margin-right: 1.5em;
+}
+.card:hover a {
+  color: var(--color-gray);
+}
+.card:hover a:hover {
   color: var(--color-red);
 }
 
 
 
 .item {
-  width: 0.6em;
-  height: 0.6em;
+  width: 0.625em;
+  height: 0.625em;
   display: inline-block;
   margin: 0 0.2em;
   border: 1px solid #333;
 }
 .output .item {
   border: none;
+  width: 0.675em;
+  height: 0.675em;
 }
 
 .dot {
