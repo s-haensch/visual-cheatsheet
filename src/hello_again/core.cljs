@@ -26,44 +26,41 @@
 
 ;; card container
 (defn card [props]
-  [:div {:class (str "card " (get props :size))}
+  [:div {:class (str "card " (:size props))}
     [:div.card-header
-      [:table
-        [:thead [:tr [:th (get props :title)]]]
-        [:tbody [:tr
-          [:td.package (get props :package)]
-          [:td.since
-            (str "since " (get props :since))
-            [:a {
-                :href (get props :source-link)
-                :target "blank"
-              } "» source"]
-            ]]]]]
+      [:h2.card-title (:title props)]
+      [:p.description (:p.description props)]
+      ]
 
     [:div.card-body
       [:div.function-wrapper
         [:div.function
           [:p 
-            "(" [:span.function-name (get props :title)]]
+            "(" [:span.function-name (:title props)]]
           (map-indexed
             (fn [index, line] ^{:key (str "line-" index)}
-              [:p.inset-1 (cons "" line)]) (get props :lines))]]
+              [:p.inset-1 (cons "" line)]) (:lines props))]]
 
       [:div.output
-        [:p (cons "=>  " (get props :output))]]]
+        [:p (cons "=>  " (:output props))]]]
 
     [:div.card-footer
-      [:a {
-          :href (get props :examples-link)
+      [:a.link {
+          :href (:examples-link props)
           :target "blank"
-        } "» Examples"]]])
+        } "» Examples"]
+      [:a.link {
+          :href (:source-link props)
+          :target "blank"
+        } "» Source"]]])
 
 ;; card properties        
 (def properties-map {
   :title "map"
   :package "clojure.core"
   :since "1.0"
-  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
+  :p.description "Applies a function to every item in a collection and returns
+        a new list of resulting items."
   :lines [
     "make-blue"
     [ "["
@@ -85,12 +82,15 @@
         {:color "blue"  :shape rect}])
     ")"]
   :examples-link "http://clojuredocs.org/clojure.core/map"
+  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
   })
 
 (def properties-filter {
   :title "filter"
   :package "clojure.core"
   :since "1.0"
+  :p.description "Applies a boolean function to all items in a
+    collection and return a list of all items returning TRUE."
   :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
   :lines [
     "purple?"
@@ -115,13 +115,12 @@
   :title "for"
   :package "clojure.core"
   :since "1.0"
+  :p.description ""
   :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L4576"
-  :size "small"
   :lines [
     [ "[x ["
       (item-array [
         {:color "green"  :shape dot}
-        {:color "green"  :shape rect}
         ]) "] y ["
       (item-array [
         {:color "blue"  :shape dot}
@@ -139,14 +138,6 @@
     "] ["
     (item-array [
         {:color "green"  :shape dot}
-        {:color "purple"  :shape rect}])
-    "] ["
-    (item-array [
-        {:color "green"  :shape rect}
-        {:color "blue"  :shape dot}])
-    "] ["
-    (item-array [
-        {:color "green"  :shape rect}
         {:color "purple"  :shape rect}])
     "])"
   ]
@@ -206,11 +197,17 @@
 (defn app []
   [:div.content
     [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
-    (card properties-map)
-    (card properties-filter)
-    (card properties-for)
-    (card properties-assoc)
-    (card properties-assoc-in)
+    [:div.col
+      (card properties-map)
+      (card properties-assoc)
+    ]
+    [:div.col
+      (card properties-filter)
+      (card properties-assoc-in)
+    ]
+    [:div.col
+      (card properties-for)
+    ]
   ])
 
 ;; render
