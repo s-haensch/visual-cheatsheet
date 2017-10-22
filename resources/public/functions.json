@@ -1,0 +1,28 @@
+[
+  {
+    "title": "map",
+    "description": "Applies a function to every item in a collection and returns a new list of resulting items.",
+    "lines": [
+      "make-blue",
+      "[*dot:green,rect:green,dot:purple,dot:green,rect:purple*])"
+    ],
+    "output": [
+      "(*dot:blue,dot:blue,dot:blue,dot:blue,dot:blue*)"
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/map",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
+  },
+  {
+    "title": "filter",
+    "description": "Applies a boolean function to all items in a collection and return a list of all items returning TRUE.",
+    "lines": [
+      "purple?",
+      "[*dot:purple,rect:blue,dot:blue,dot:green,rect:purple*])"
+    ],
+    "output": [
+      "(*dot:purple,rect:purple*)"
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/filter",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
+  }
+]
