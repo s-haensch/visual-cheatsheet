@@ -1,11 +1,20 @@
 (ns hello-again.core
-  (:require [reagent.core :as reagent :refer [atom]]))
+  (:require [reagent.core :as reagent :refer [atom]]
+            [ajax.core :as ajx] ))
 
   ; (enable-console-print!)
 
+
 ;; define your app data so that it doesn't get over-written on reload
-(defonce app-state (atom
-  { :text "Hello!" }))
+(defonce app-state
+  (atom { :functions []
+        }))
+
+;; load function descriptions from json-file
+(ajx/GET "/functions.json"
+   {:handler (fn [functions] (swap! app-state assoc :functions functions))
+    :error-handler (fn [details] (.warn js/console (str "Failed to load functions from server: " details)))
+    :response-format :json, :keywords? true})        
 
 ;; COMPONENTS
 ;; dot
@@ -29,8 +38,7 @@
   [:div {:class (str "card " (:size props))}
     [:div.card-header
       [:h2.card-title (:title props)]
-      [:p.description (:p.description props)]
-      ]
+      [:p.description (:description props)]]
 
     [:div.card-body
       [:div.function-wrapper
@@ -39,8 +47,8 @@
             "(" [:span.function-name (:title props)]]
           (map-indexed
             (fn [index, line] ^{:key (str "line-" index)}
-              [:p.inset-1 (cons "" line)]) (:lines props))]]
-
+              [:p.inset-1 (cons "" line)])
+              (:lines props))]]
       [:div.output
         [:p (cons "=>  " (:output props))]]]
 
@@ -54,12 +62,24 @@
           :target "blank"
         } "» Source"]]])
 
+;; match string representation to shape
+(defn shape-from-string [string]
+  (case string
+    "dot" dot
+    "rect" rect
+    :unknown-shape))
+
+(defn new-card [index, props]
+  ^{:key (str "card-" index)}
+  [:div.card (:title props)
+    ((shape-from-string "rect") ["purple" 0])])
+        
 ;; card properties        
 (def properties-map {
   :title "map"
   :package "clojure.core"
   :since "1.0"
-  :p.description "Applies a function to every item in a collection and returns
+  :description "Applies a function to every item in a collection and returns
         a new list of resulting items."
   :lines [
     "make-blue"
@@ -89,9 +109,8 @@
   :title "filter"
   :package "clojure.core"
   :since "1.0"
-  :p.description "Applies a boolean function to all items in a
+  :description "Applies a boolean function to all items in a
     collection and return a list of all items returning TRUE."
-  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
   :lines [
     "purple?"
     [ "["
@@ -109,6 +128,7 @@
         {:color "purple"  :shape rect}])
     ")" ]
   :examples-link "http://clojuredocs.org/clojure.core/filter"
+  :source-link "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
   })
 
 (def properties-for {
@@ -193,13 +213,20 @@
   :examples-link "http://clojuredocs.org/clojure.core/assoc-in"
   })
 
+
+(.log js/console (->> (:functions @app-state)
+  (first)
+  (:description)
+  ))
+
 ;; main
 (defn app []
   [:div.content
     [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
     [:div.col
-      (card properties-map)
-      (card properties-assoc)
+      ; (card properties-map)
+      ; (card properties-assoc)
+      (map-indexed new-card (:functions @app-state))
     ]
     [:div.col
       (card properties-filter)
