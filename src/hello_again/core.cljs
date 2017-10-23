@@ -66,18 +66,22 @@
       [:h2.card-title (:title props)]
       [:p.description (:description props)]]
 
+    (map-indexed
+      (fn [index example]
+        ^{:key (str "example-" index)}
+        [:div.card-body
+          [:div.function-wrapper
+            [:div.function
+              [:p 
+                "(" [:span.function-name (:title props)]]
+              (map-indexed
+                make-line (:lines example))]]
+          [:div.output
+            ; [:p.arrow "=>  "]
+            (map-indexed
+              make-line (:output example))]])
+      (:examples props))
     
-    [:div.card-body
-      [:div.function-wrapper
-        [:div.function
-          [:p 
-            "(" [:span.function-name (:title props)]]
-          (map-indexed
-            make-line (:lines props))]]
-      [:div.output
-        [:p.arrow "=>  "]
-        (map-indexed
-          make-line (:output props))]]
      
     [:div.card-footer
       [:a.link {
