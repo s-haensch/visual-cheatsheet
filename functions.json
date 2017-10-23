@@ -12,6 +12,7 @@
     "examples-link": "http://clojuredocs.org/clojure.core/map",
     "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
   },
+
   {
     "title": "filter",
     "description": "Applies a boolean function to all items in a collection and return a list of all items returning TRUE.",
@@ -24,5 +25,48 @@
     ],
     "examples-link": "http://clojuredocs.org/clojure.core/filter",
     "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
+  },
+
+  {
+    "title": "for",
+    "description": "",
+    "lines": [
+      "[x [*dot:green,rect:blue*] y [*dot:blue,rect:purple*]]",
+      "[x y])"
+    ],
+    "output": [
+      "([*dot:green,dot:blue*][*dot:green,rect:purple*]",
+      "[*rect:blue,dot:blue*][*rect:blue,rect:purple*])"
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/for",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L4576"
+  },
+
+  {
+    "title": "assoc",
+    "description": "",
+    "lines": [
+      "[*dot:green,dot:green,dot:green*]",
+      "1 *rect:purple*)"
+    ],
+    "output": [
+      "[*dot:green,rect:purple,dot:green*]"
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/assoc",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L181"
+  },
+
+  {
+    "title": "assoc-in",
+    "description": "",
+    "lines": [
+      "[[*dot:blue,dot:blue*][*rect:purple,rect:purple*]]",
+      "[1 0] *dot:green*)"
+    ],
+    "output": [
+      "[[*dot:blue,dot:blue*][*dot:green,rect:purple*]]"
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/assoc-in",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6043"
   }
 ]
