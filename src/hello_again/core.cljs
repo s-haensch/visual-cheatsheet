@@ -24,7 +24,7 @@
   "maps a shape:color pair to a span with classes"
   [index pair]
   (let [[shape color]
-        (strng/split pair ":")]
+        (strng/split pair "-")]
     ^{:key (str "item-" index)}
     [:span {:class (str "item " shape " " color)}]
   ))
@@ -40,7 +40,7 @@
   [fragments]
   (map
     (fn [fragment]
-      (if (re-find #":" fragment)
+      (if (re-find #"-" fragment)
         (map-indexed
           pair-to-element
           (strng/split fragment ","))
@@ -65,6 +65,8 @@
     [:div.card-header
       [:h2.card-title (:title props)]
       [:p.description (:description props)]]
+
+    
     [:div.card-body
       [:div.function-wrapper
         [:div.function
@@ -76,6 +78,7 @@
         [:p.arrow "=>  "]
         (map-indexed
           make-line (:output props))]]
+     
     [:div.card-footer
       [:a.link {
           :href (:examples-link props)
@@ -101,14 +104,11 @@
     ; [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
     
     [:div.col
-      (map-indexed card (nth divide-by-three 0))
-    ]
+      (map-indexed card (nth divide-by-three 0)) ]
     [:div.col
-      (map-indexed card (nth divide-by-three 1))
-    ]
+      (map-indexed card (nth divide-by-three 1)) ]
     [:div.col
-      (map-indexed card (nth divide-by-three 2))
-    ]
+      (map-indexed card (nth divide-by-three 2)) ]
   ])
 
 ;; render
