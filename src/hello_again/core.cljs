@@ -1,6 +1,7 @@
 (ns hello-again.core
   (:require [reagent.core :as reagent :refer [atom]]
-            [ajax.core :as ajx] ))
+            [ajax.core :as ajx]
+            [clojure.string :as strng] ))
 
   ; (enable-console-print!)
 
@@ -62,17 +63,53 @@
           :target "blank"
         } "» Source"]]])
 
-;; match string representation to shape
-(defn shape-from-string [string]
-  (case string
-    "dot" dot
-    "rect" rect
-    :unknown-shape))
 
+;; turns a "dot:purple" pair into the according element
+(defn pair-to-element
+  "maps a shape:color pair to a span with classes"
+  [index pair]
+  (let [[shape color]
+        (strng/split pair ":")]
+    ^{:key (str "item-" index)}
+    [:span {:class (str "item " shape " " color)}]
+  ))
+
+;; A line with item descriptions like "[*dot:purple,rect:blue*])"
+;; gets split into string pieces [ "[", "dot:purple,rect:blue", "]" ],
+;; these pieces are processed here. Those pieces with item descriptions
+;; get split further by a comma -> ["dot:purple", "rect:blue"] and are
+;; then turned into a span element 
+(defn convert-line-fragments
+  "converts line fragments to items, if it contains shape:color pairs"
+
+  [fragments]
+  (map
+    (fn [fragment]
+      (if (re-find #":" fragment)
+        (map-indexed
+          pair-to-element
+          (strng/split fragment ","))
+        fragment))
+   fragments))
+
+
+;; creates paragraphs from descriptions
+(defn make-line [index line]
+  ^{:key (str "line-" index)}
+  [:p.inset-1
+    (if (re-find #"\*.+\*" line)
+      (convert-line-fragments (strng/split line "*"))
+      line)
+  ])
+
+
+;; card container    
 (defn new-card [index, props]
   ^{:key (str "card-" index)}
-  [:div.card (:title props)
-    ((shape-from-string "rect") ["purple" 0])])
+  [:div.card
+    (:title props)
+    (map-indexed
+      make-line (:lines props))])
         
 ;; card properties        
 (def properties-map {
@@ -213,11 +250,6 @@
   :examples-link "http://clojuredocs.org/clojure.core/assoc-in"
   })
 
-
-(.log js/console (->> (:functions @app-state)
-  (first)
-  (:description)
-  ))
 
 ;; main
 (defn app []
