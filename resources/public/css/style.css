@@ -146,7 +146,7 @@ body {
 }
 
 .card-body .function {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   margin: auto;
 }
 .card-body .function p:nth-child(1) {
