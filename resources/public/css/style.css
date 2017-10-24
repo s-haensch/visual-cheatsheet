@@ -16,6 +16,9 @@
   --color-brackets: #A0A0A0;
   --color-function-argument: #4F4F4F;
 
+  --color-gradient-left: rgba(133, 201, 189, 0.7);
+  --color-gradient-right: #6998c4;
+
   --duration-default: 0.25s;
 }
 
@@ -26,6 +29,15 @@
        url("eot/FiraSans-Bold.eot") format("embedded-opentype"),
        url("woff/FiraSans-Bold.woff") format("woff"),
        url("ttf/FiraSans-Bold.ttf") format("truetype");
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Fira Sans Heavy';
+  src: url("eot/FiraSans-Heavy.eot");
+  src: local("Fira Sans Heavy"),
+       url("eot/FiraSans-Heavy.eot") format("embedded-opentype"),
+       url("woff/FiraSans-Heavy.woff") format("woff"),
+       url("ttf/FiraSans-Heavy.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
 }
@@ -36,7 +48,6 @@
          url("eot/FiraSans-SemiBold.eot") format("embedded-opentype"),
          url("woff/FiraSans-SemiBold.woff") format("woff"),
          url("ttf/FiraSans-SemiBold.ttf") format("truetype");
-    font-weight: 600;
     font-style: normal;
 }
 
@@ -44,14 +55,13 @@
 
 body {
   background-color: #ddd9cf;
-  background-image: linear-gradient(45deg, #ddd9cf 0%, #91CAB5 100%);
-  height: 2000px;
+  background-image: linear-gradient(45deg, #ddd9cf 0%, var(--color-gradient-right) 100%);
   margin: 0;
 }
 
 #app {
-  height: 100%;
-  background-image: linear-gradient(135deg, #88AFCA 0%, rgba(0, 0, 0, 0) 100%);
+  /* height: 100%; */
+  background-image: linear-gradient(135deg, var(--color-gradient-left) 0%, rgba(0, 0, 0, 0) 100%);
   padding: 2rem 6rem 0 6rem;
 }
 
@@ -65,14 +75,15 @@ body {
 
 .headline {
   font-family: "Fira Sans SemiBold", "Fira", sans-serif;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   background-color: rgba(0, 0, 0, 0);
   margin: 0;
-  padding: 1em 0 0.8em 0;
+  padding: 0.8em 0 0.8em 0;
   color: white;
   width: 100%;
 }
 .headline .emph {
+  font-family: "Fira Sans Heavy", "Fira", sans-serif;
   color: var(--color-red);
 }
 
@@ -154,10 +165,10 @@ body {
 }
 
 .card-body .function .function-name {
-  font-family: "Fira Sans Bold", "Fira", monospaced;
-  font-size: 1.25rem;
+  font-family: "Fira Sans Heavy", "Fira", monospaced;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+  color: var(--color-black);
 }
 
 .card-body .function .line {
@@ -166,16 +177,20 @@ body {
 
 .card-body .output {
   background: var(--color-code-output);
-  padding: 0.15rem 2.5rem;
+  min-width: 1em;
 }
+
+.card-body .output p {
+  padding: 0.25em;
+  margin: 0;
+}
+
 .card-body .output .arrow {
-  /* color: var(--color-red); */
   position: absolute;
   left: 1em;
 }
 
 .card-body .output .line {
-  /* margin: auto; */
   text-align: center;
 }
 
