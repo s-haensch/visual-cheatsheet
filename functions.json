@@ -165,17 +165,81 @@
 
   {
     "title": "get",
-    "description": "Returns the number of items in a collection",
+    "description": "Returns a value by key from maps and by index from vectors.",
+    "examples": [
+      {
+        "lines": [
+          "{:dot *dot-green*",
+          ":rect *rect-blue*}",
+          ":dot)"
+        ],
+        "output": [
+          "*dot-green*"
+        ]
+      },
+      {
+        "lines": [
+          "[*dot-green,rect-blue*]",
+          "1)"
+        ],
+        "output": [
+          "*rect-blue*"
+        ]
+      }
+    ],
+    "examples-link": "http://clojuredocs.org/clojure.core/get",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L1491"
+  },
+
+  {
+    "title": "get-in",
+    "description": "Returns a value in a nested map by a vector of keys. Also by a vector of indices in a nested vector.",
     "examples": [{
       "lines": [
-        "{:dot *dot-green* :rect *rect-blue*}",
-        ":dot)"
+        "{:dots {",
+        " :green *dot-green*",
+        " :blue *dot-blue* }",
+        ":rects {",
+        " :blue *rect-blue*",
+        " :purple *rect-purple* }",
+        "}",
+        "[:dots :blue])"
+      ],
+      "output": [
+        "*dot-blue*"
+      ]
+    }],
+    "examples-link": "http://clojuredocs.org/clojure.core/get-in",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6024"
+  },
+
+  {
+    "title": "first",
+    "description": "Returns the first value of a collection.",
+    "examples": [{
+      "lines": [
+        "[*dot-green,dot-blue,rect-blue*])"
       ],
       "output": [
         "*dot-green*"
       ]
     }],
-    "examples-link": "http://clojuredocs.org/clojure.core/count",
-    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L866"
+    "examples-link": "http://clojuredocs.org/clojure.core/first",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L49"
+  },
+ 
+  {
+    "title": "last",
+    "description": "Returns the last value of a collection.",
+    "examples": [{
+      "lines": [
+        "[*dot-blue,dot-purple,rect-green*])"
+      ],
+      "output": [
+        "*rect-green*"
+      ]
+    }],
+    "examples-link": "http://clojuredocs.org/clojure.core/last",
+    "source-link": "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L262"
   }
 ]
