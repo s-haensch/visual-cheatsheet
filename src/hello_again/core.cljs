@@ -105,7 +105,7 @@
 
 (defn app []
   [:div.content
-    ; [:h1.headline "The Visual Cheatsheet — " [:span.emph "ClojureScript"]]
+    [:h1.headline "The " [:span.emph "ClojureScript"] " Visual Cheatsheet"]
     
     [:div.col
       (map-indexed card (nth divide-by-three 0)) ]
