@@ -52,7 +52,6 @@
 }
 
 
-
 body {
   background-color: #ddd9cf;
   background-image: linear-gradient(45deg, #ddd9cf 0%, var(--color-gradient-right) 100%);
@@ -146,7 +145,8 @@ body {
 }
 .card-body p {
   font-family: "Fira Code", monospaced;
-  font-size: 1.25em;
+  font-size: 1.1em;
+  line-height: 0.75em;
   color: var(--color-brackets);
   margin: 0.5em 0;
 }
@@ -161,7 +161,7 @@ body {
   margin: auto;
 }
 .card-body .function p:nth-child(1) {
-  margin-bottom: -0.4rem;
+  margin-bottom: 0.65rem;
 }
 
 .card-body .function .function-name {
