@@ -9,7 +9,7 @@
           "[*dot-green,rect-green,dot-purple,dot-green,rect-purple*])"
         ],
         "output": [
-          "(*dot-blue,dot-blue,dot-blue,dot-blue,dot-blue*)"
+          "(*dot-blue,rect-blue,dot-blue,dot-blue,rect-blue*)"
         ]
       }
     ],
@@ -35,7 +35,7 @@
 
   {
     "title": "for",
-    "description": "",
+    "description": "Given binding/collection pairs are iterated in a nested fashion.",
     "examples": [{
       "lines": [
         "[x [*dot-green,rect-blue*] y [*dot-blue,rect-purple*]]",
@@ -52,7 +52,7 @@
 
   {
     "title": "assoc",
-    "description": "",
+    "description": "Returns a new collection with the given value at the given index/key.",
     "examples": [{
       "lines": [
         "[*dot-green,dot-green,dot-green*]",
@@ -68,7 +68,7 @@
 
   {
     "title": "assoc-in",
-    "description": "",
+    "description": "Returns a new nested collection with the given value at the given nested index/key vector.",
     "examples": [{
       "lines": [
         "[[*dot-blue,dot-blue*][*rect-purple,rect-purple*]]",
@@ -84,7 +84,7 @@
 
   {
     "title": "count",
-    "description": "Returns the number of items in a collection",
+    "description": "Returns the number of items in a collection.",
     "examples": [{
       "lines": [
         "[*dot-green,dot-blue,rect-blue*])"
@@ -99,7 +99,7 @@
 
   {
     "title": "empty",
-    "description": "Returns an empty version of a given collection",
+    "description": "Returns an empty version of a given collection.",
     "examples": [
       {
         "lines": [
@@ -125,7 +125,7 @@
 
   {
     "title": "nth",
-    "description": "Returns the value at the given index",
+    "description": "Returns the value at the given index.",
     "examples": [{
       "lines": [
         "[*dot-green,rect-blue,dot-purple*] 1)"
@@ -140,7 +140,7 @@
 
   {
     "title": "rand-nth",
-    "description": "Returns a random value of a collection",
+    "description": "Returns a random value of a collection.",
     "examples": [
       {
         "lines": [
