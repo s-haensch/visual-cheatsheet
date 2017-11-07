@@ -90,7 +90,24 @@
           :target "blank"
         } "Source"]]
     ])
-        
+
+(defn card-group
+  [index group]
+  (let [ divide-by-three
+          (partition-all
+            (.ceil js/Math 
+              (/ (count (:functions group)) 3))
+            (:functions group))
+         title
+          (:name group)]
+
+    ^{:key (str "group-" index)}
+    [:div.group
+      [:h2.group-title title]
+      [:div.group-cols
+        [:div.col (map-indexed card (nth divide-by-three 0))]
+        [:div.col (map-indexed card (nth divide-by-three 1))]
+        [:div.col (map-indexed card (nth divide-by-three 2))]]]))    
 
 ;; MAIN
 ;; load function descriptions from json-file
@@ -100,24 +117,12 @@
         ;; load function to state
         (swap! app-state assoc :functions functions)
 
-        ;; split functions
-        (def divide-by-three 
-          (partition-all
-            (.ceil js/Math 
-              (/ (count (:functions @app-state)) 3))
-           (:functions @app-state)))
-
+        
         ;; app
         (defn app []
           [:div.content
             [:h1.headline "The " [:span.emph "ClojureScript"] " Visual Cheatsheet"]
-            
-            [:div.col
-              (map-indexed card (nth divide-by-three 0)) ]
-            [:div.col
-              (map-indexed card (nth divide-by-three 1)) ]
-            [:div.col
-              (map-indexed card (nth divide-by-three 2)) ]
+            (map-indexed card-group (:functions @app-state))
           ])
 
         ;; render
