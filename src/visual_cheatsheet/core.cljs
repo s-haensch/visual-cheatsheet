@@ -10,7 +10,6 @@
 (defonce app-state
   (atom { :functions []
         }))
-
       
 
 ;; COMPONENTS
@@ -84,11 +83,12 @@
       [:a.link {
           :href (:examples-link props)
           :target "blank"
-        } "» Examples"]
+        } "Examples"]
+      [:span.link-seperator]
       [:a.link {
           :href (:source-link props)
           :target "blank"
-        } "» Source"]]
+        } "Source"]]
     ])
         
 
@@ -103,8 +103,8 @@
         ;; split functions
         (def divide-by-three 
           (partition-all
-            (.ceil js/Math (/
-              (count (:functions @app-state)) 3))
+            (.ceil js/Math 
+              (/ (count (:functions @app-state)) 3))
            (:functions @app-state)))
 
         ;; app
