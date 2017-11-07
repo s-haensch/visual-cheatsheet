@@ -22,7 +22,7 @@
   --duration-default: 0.25s;
 }
 
-@font-face{
+@font-face {
   font-family: 'Fira Sans Bold';
   src: url("eot/FiraSans-Bold.eot");
   src: local("Fira Sans Bold"),
@@ -31,7 +31,7 @@
        url("ttf/FiraSans-Bold.ttf") format("truetype");
   font-style: normal;
 }
-@font-face{
+@font-face {
   font-family: 'Fira Sans Heavy';
   src: url("eot/FiraSans-Heavy.eot");
   src: local("Fira Sans Heavy"),
@@ -41,7 +41,7 @@
   font-weight: 100;
   font-style: normal;
 }
-@font-face{
+@font-face {
     font-family: 'Fira Sans SemiBold';
     src: url("eot/FiraSans-SemiBold.eot");
     src: local("Fira Sans SemiBold"),
@@ -209,26 +209,35 @@ body {
 .card:hover .card-footer {
   max-height: 1.5rem;
   margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
 }
-.card a {
+.card .card-footer a {
   color: var(--color-card-background);
   transition: color 0.5s;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 700;
 }
-.card .card-footer a:first-child {
-  margin-right: 1.5em;
-}
-.card:hover a {
+
+.card:hover .card-footer a {
   color: var(--color-gray);
 }
-.card:hover a:hover {
+.card:hover .card-footer a:hover {
   color: var(--color-red);
 }
 
+.card .card-footer .link-seperator {
+  display: inline-block;
+  margin: 6px 10px 0;
+  background-color: var(--color-gray);
+  border-radius: 50%;
+  width: 0.3em;
+  height: 0.3em;
+}
 
 
+/* SHAPES */
 .item {
   width: 0.625em;
   height: 0.625em;
