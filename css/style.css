@@ -67,9 +67,6 @@ body {
 .content {
   width: 66rem;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .headline {
@@ -86,7 +83,22 @@ body {
   color: var(--color-red);
 }
 
-/* CARD LAYOUT */
+/* CARD GROUPS */
+.content .group-cols {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.content .group .group-title {
+  font-size: 1.35rem;
+  color: var(--color-black);
+  text-transform: uppercase;
+  font-weight: normal;
+  border-bottom: 1px solid var(--color-black);
+}
+
+
+/* CARDS */
 .card {
   background: var(--color-card-background);
   padding: 1.5rem 1.5rem 1.5rem 1.5rem;
@@ -181,8 +193,8 @@ body {
 }
 
 .card-body .output p {
-  padding: 0.25em;
   margin: 0;
+  padding: 0.4em;
 }
 
 .card-body .output .arrow {
