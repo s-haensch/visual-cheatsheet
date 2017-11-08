@@ -3,23 +3,76 @@
     "name": "retrieve from collection",
     "functions": [
       {
-        "title": "map",
+        "title": "get",
         "description":
-          "Applies a function to every item in a collection and returns a new list of resulting items.",
+          "Returns a value by key from maps and by index from vectors.",
+        "examples": [
+          {
+            "lines": ["{:dot *dot-green*", ":rect *rect-blue*}", ":dot)"],
+            "output": ["*dot-green*"]
+          },
+          {
+            "lines": ["[*dot-green,rect-blue*]", "1)"],
+            "output": ["*rect-blue*"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/get",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L1491"
+      },
+      {
+        "title": "get-in",
+        "description":
+          "Returns a value in a nested map by a vector of keys. Also by a vector of indices in a nested vector.",
         "examples": [
           {
             "lines": [
-              "make-blue",
-              "[*dot-green,rect-green,dot-purple,dot-green,rect-purple*])"
+              "{:dots {",
+              " :green *dot-green*",
+              " :blue *dot-blue* }",
+              ":rects {",
+              " :blue *rect-blue*",
+              " :purple *rect-purple* }",
+              "}",
+              "[:dots :blue])"
             ],
-            "output": ["(*dot-blue,rect-blue,dot-blue,dot-blue,rect-blue*)"]
+            "output": ["*dot-blue*"]
           }
         ],
-        "examples-link": "http://clojuredocs.org/clojure.core/map",
+        "examples-link": "http://clojuredocs.org/clojure.core/get-in",
         "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6024"
       },
-
+      {
+        "title": "nth",
+        "description": "Returns the value at the given index.",
+        "examples": [
+          {
+            "lines": ["[*dot-green,rect-blue,dot-purple*] 1)"],
+            "output": ["*rect-blue*"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/nth",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L881"
+      },
+      {
+        "title": "rand-nth",
+        "description": "Returns a random element from a collection.",
+        "examples": [
+          {
+            "lines": ["[*dot-green,rect-blue,dot-purple*])"],
+            "output": ["*rect-blue*"]
+          },
+          {
+            "lines": ["[*dot-green,rect-blue,dot-purple*])"],
+            "output": ["*dot-purple*"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/rand-nth",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L7106"
+      },
       {
         "title": "filter",
         "description":
@@ -37,7 +90,70 @@
         "source-link":
           "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2766"
       },
+      {
+        "title": "first",
+        "description": "Returns the first value of a collection.",
+        "examples": [
+          {
+            "lines": ["[*dot-green,dot-blue,rect-blue*])"],
+            "output": ["*dot-green*"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/first",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L49"
+      },
 
+      {
+        "title": "last",
+        "description": "Returns the last value of a collection.",
+        "examples": [
+          {
+            "lines": ["[*dot-blue,dot-purple,rect-green*])"],
+            "output": ["*rect-green*"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/last",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L262"
+      },
+      {
+        "title": "take",
+        "description": "Returns the first n elements from a collection.",
+        "examples": [
+          {
+            "lines": [
+              "2 [*dot-blue,dot-purple,rect-green,rect-blue,dot-blue*])"
+            ],
+            "output": ["(*dot-blue,dot-purple*)"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/take",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2834"
+      }
+    ]
+  },
+  {
+    "name": "work with collections",
+    "functions": [
+      {
+        "title": "map",
+        "description":
+          "Applies a function to every item in a collection and returns a new list of resulting items.",
+        "examples": [
+          {
+            "lines": [
+              "make-blue",
+              "[*dot-green,rect-green,dot-purple,dot-green,rect-purple*])"
+            ],
+            "output": ["(*dot-blue,rect-blue,dot-blue,dot-blue,rect-blue*)"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/map",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L2700"
+      },
       {
         "title": "for",
         "description":
@@ -58,7 +174,45 @@
         "source-link":
           "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L4576"
       },
+      {
+        "title": "partition",
+        "description":
+          "Splits a collection into chunks of n elements. Ignores elements at the end that do not count up to n.",
+        "examples": [
+          {
+            "lines": [
+              "2 [*dot-blue,rect-blue,dot-purple,rect-purple,dot-green*])"
+            ],
+            "output": ["((*dot-blue,rect-blue*)(*dot-purple,rect-purple*))"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/partition",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L3157"
+      }
+    ]
+  },
 
+  {
+    "name": "\"change\" collections",
+    "functions": [
+      {
+        "title": "empty",
+        "description": "Returns an empty version of a given collection.",
+        "examples": [
+          {
+            "lines": ["[*dot-purple,dot-green,rect-purple*])"],
+            "output": ["[]"]
+          },
+          {
+            "lines": ["{:first *dot-purple*", " :second *rect-blue*})"],
+            "output": ["{}"]
+          }
+        ],
+        "examples-link": "http://clojuredocs.org/clojure.core/empty",
+        "source-link":
+          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L5145"
+      },
       {
         "title": "assoc",
         "description":
@@ -90,145 +244,6 @@
         "examples-link": "http://clojuredocs.org/clojure.core/assoc-in",
         "source-link":
           "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6043"
-      },
-
-      {
-        "title": "count",
-        "description": "Returns the number of items in a collection.",
-        "examples": [
-          {
-            "lines": ["[*dot-green,dot-blue,rect-blue*])"],
-            "output": ["3"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/count",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L866"
-      }
-    ]
-  },
-  {
-    "name": "change collections",
-    "functions": [
-      {
-        "title": "empty",
-        "description": "Returns an empty version of a given collection.",
-        "examples": [
-          {
-            "lines": ["[*dot-purple,dot-green,rect-purple*])"],
-            "output": ["[]"]
-          },
-          {
-            "lines": ["{:first *dot-purple*", " :second *rect-blue*})"],
-            "output": ["{}"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/count",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L866"
-      },
-
-      {
-        "title": "nth",
-        "description": "Returns the value at the given index.",
-        "examples": [
-          {
-            "lines": ["[*dot-green,rect-blue,dot-purple*] 1)"],
-            "output": ["*rect-blue*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/nth",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L881"
-      },
-
-      {
-        "title": "rand-nth",
-        "description": "Returns a random value of a collection.",
-        "examples": [
-          {
-            "lines": ["[*dot-green,rect-blue,dot-purple*])"],
-            "output": ["*rect-blue*"]
-          },
-          {
-            "lines": ["[*dot-green,rect-blue,dot-purple*])"],
-            "output": ["*dot-purple*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/rand-nth",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L7106"
-      },
-
-      {
-        "title": "get",
-        "description":
-          "Returns a value by key from maps and by index from vectors.",
-        "examples": [
-          {
-            "lines": ["{:dot *dot-green*", ":rect *rect-blue*}", ":dot)"],
-            "output": ["*dot-green*"]
-          },
-          {
-            "lines": ["[*dot-green,rect-blue*]", "1)"],
-            "output": ["*rect-blue*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/get",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L1491"
-      },
-
-      {
-        "title": "get-in",
-        "description":
-          "Returns a value in a nested map by a vector of keys. Also by a vector of indices in a nested vector.",
-        "examples": [
-          {
-            "lines": [
-              "{:dots {",
-              " :green *dot-green*",
-              " :blue *dot-blue* }",
-              ":rects {",
-              " :blue *rect-blue*",
-              " :purple *rect-purple* }",
-              "}",
-              "[:dots :blue])"
-            ],
-            "output": ["*dot-blue*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/get-in",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L6024"
-      },
-
-      {
-        "title": "first",
-        "description": "Returns the first value of a collection.",
-        "examples": [
-          {
-            "lines": ["[*dot-green,dot-blue,rect-blue*])"],
-            "output": ["*dot-green*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/first",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L49"
-      },
-
-      {
-        "title": "last",
-        "description": "Returns the last value of a collection.",
-        "examples": [
-          {
-            "lines": ["[*dot-blue,dot-purple,rect-green*])"],
-            "output": ["*rect-green*"]
-          }
-        ],
-        "examples-link": "http://clojuredocs.org/clojure.core/last",
-        "source-link":
-          "https://github.com/clojure/clojure/blob/clojure-1.9.0-alpha14/src/clj/clojure/core.clj#L262"
       }
     ]
   }
