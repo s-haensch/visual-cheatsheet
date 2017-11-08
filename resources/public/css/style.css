@@ -91,10 +91,10 @@ body {
 }
 .content .group .group-title {
   font-size: 1.35rem;
-  color: var(--color-black);
+  color: var(--color-function-argument);
   text-transform: uppercase;
   font-weight: normal;
-  border-bottom: 1px solid var(--color-black);
+  border-bottom: 1px solid var(--color-function-argument);
 }
 
 
@@ -194,7 +194,7 @@ body {
 
 .card-body .output p {
   margin: 0;
-  padding: 0.4em;
+  padding: 0.45em;
 }
 
 .card-body .output .arrow {
