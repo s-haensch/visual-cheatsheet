@@ -42,6 +42,9 @@
         fragment))
    fragments))
 
+(.log js/console
+  (.split "(#get# {:dot *dot-green* abc" #"([\*\#].+?[\*\#])")
+  )
 
 ;; creates paragraphs from descriptions
 (defn make-line [index line]
