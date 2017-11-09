@@ -4,6 +4,7 @@ pom.xml
 /lib/
 /classes/
 /out/
+resources/public/js/compiled/out/
 /target/
 .lein-deps-sum
 .lein-repl-history
