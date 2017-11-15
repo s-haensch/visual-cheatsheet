@@ -20,4 +20,4 @@ If you are interested in the design / prototype process, you can have a look at 
 
 
 ## Press
-If you want to report about TCVC, your first choice would be to post a link to the [github page](https://s-haensch.github.io/visual-cheatsheet/), it already has all the Open Graph and Twitter meta information. For all other purposes, see the **press resources**.
+If you want to report about TCVC, your first choice would be to post a link to the [github page](https://s-haensch.github.io/visual-cheatsheet/), it already has all the Open Graph and Twitter meta information. For all other purposes, see the [press resources](https://github.com/s-haensch/visual-cheatsheet/blob/master/press.md).
