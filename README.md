@@ -10,9 +10,9 @@ See the application on [github pages](https://s-haensch.github.io/visual-cheatsh
 
 The ClojureScript Visual Cheatsheet (**TCVC**) is still early stage and as of now simply a proof of concept. Here are the things to be implemented next:
 
-- [ ] covering all core Clojure functions
-- [ ] making it responsive
-- [ ] filtering / search bar
+- [ ] cover all core Clojure functions
+- [ ] make it responsive
+- [ ] filter view / search bar
 - [ ] highlight function arguments explained in the description text as in [this prototype](https://www.figma.com/proto/O5Pgq4suWnaAK0KjWyqOtqxb/ClojureScript-Visual-Cheatsheet?node-id=125%3A4255&scaling=contain)
 
 ## Design
