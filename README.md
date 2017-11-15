@@ -13,7 +13,7 @@ The ClojureScript Visual Cheatsheet (**TCVC**) is still early stage and as of no
 - [ ] covering all core Clojure functions
 - [ ] making it responsive
 - [ ] filtering / search bar
-- [ ] highlight function arguments explained in the description text as in [this prototype](https://www.figma.com/proto/O5Pgq4suWnaAK0KjWyqOtqxb/ClojureScript-Visual-Cheatsheet?scaling=contain&node-id=80%3A8790)
+- [ ] highlight function arguments explained in the description text as in [this prototype](https://www.figma.com/proto/O5Pgq4suWnaAK0KjWyqOtqxb/ClojureScript-Visual-Cheatsheet?node-id=125%3A4255&scaling=contain)
 
 ## Design
 If you are interested in the design / prototype process, you can have a look at the [figma source file](https://www.figma.com/file/O5Pgq4suWnaAK0KjWyqOtqxb/ClojureScript-Visual-Cheatsheet).
